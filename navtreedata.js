@@ -24,30 +24,22 @@ var NAVTREE =
 [
   [ "FieldReportsPHPBridge", "index.html", [
     [ "PHP Bridge 2.0.0", "index.html", [
-      [ "ライセンス", "index.html#autotoc_md0", null ],
-      [ "必要条件", "index.html#autotoc_md1", [
-        [ "Field Reports本体", "index.html#autotoc_md2", null ],
-        [ "連携手段の選択", "index.html#autotoc_md3", null ]
+      [ "必要条件", "index.html#autotoc_md0", [
+        [ "Field Reports本体", "index.html#autotoc_md1", null ],
+        [ "連携手段の選択", "index.html#autotoc_md2", null ],
+        [ "PHP処理系", "index.html#autotoc_md3", null ]
       ] ],
       [ "インストール", "index.html#autotoc_md4", [
         [ "Composerを利用してのインストール", "index.html#autotoc_md5", null ],
-        [ "ソースからのインストール", "index.html#autotoc_md6", null ]
+        [ "ソースファイルからのインストール", "index.html#autotoc_md6", null ]
       ] ],
       [ "動作確認", "index.html#autotoc_md7", [
         [ "コマンド連携時", "index.html#autotoc_md8", null ],
         [ "HTTP通携時", "index.html#autotoc_md9", null ]
       ] ],
-      [ "API概要", "index.html#autotoc_md10", [
-        [ "Bridgeクラス", "index.html#autotoc_md11", null ],
-        [ "Proxyインターフェース", "index.html#autotoc_md12", null ],
-        [ "URIパラメータ", "index.html#autotoc_md13", [
-          [ "コマンド連携時", "index.html#autotoc_md14", null ],
-          [ "HTTP通携時", "index.html#autotoc_md15", null ]
-        ] ],
-        [ "レンダリング・パラメータ", "index.html#autotoc_md16", null ]
-      ] ],
-      [ "API使用例", "index.html#autotoc_md17", null ],
-      [ "著者", "index.html#autotoc_md18", null ]
+      [ "API使用例", "index.html#autotoc_md10", null ],
+      [ "ライセンス", "index.html#autotoc_md11", null ],
+      [ "著者", "index.html#autotoc_md12", null ]
     ] ],
     [ "クラス", "annotated.html", [
       [ "クラス一覧", "annotated.html", "annotated_dup" ],

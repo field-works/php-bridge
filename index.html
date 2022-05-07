@@ -93,37 +93,32 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <li>PDFデータを解析し，フィールドや注釈の情報を取得する。</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md0"></a>
-ライセンス</h1>
-<p>本モジュールのソースコードは，BSDライセンスのオープンソースとします。 </p><pre class="fragment">https://github.com/field-works/php-bridge/
-</pre><p>以下のような場合，自由に改変／再配布していただいて結構です。</p>
-<ul>
-<li>独自機能の追加</li>
-<li>ビルド/実行環境等の違いにより，本モジュールが正常に機能しない。</li>
-<li>未サポートのPHPバージョンへの対応のため改造が必要。</li>
-<li>他の言語の拡張ライブラリ作成のベースとして利用したい。</li>
-</ul>
-<p>ただし，ソースを改変したモジュール自体において問題が発生し場合については， サポート対応いたしかねますのでご了承ください （Field Reports本体もしくはオリジナルの本モジュールに起因する問題であれば対応いたします）。</p>
-<h1><a class="anchor" id="autotoc_md1"></a>
 必要条件</h1>
-<h2><a class="anchor" id="autotoc_md2"></a>
+<h2><a class="anchor" id="autotoc_md1"></a>
 Field Reports本体</h2>
-<p>本モジュールのご利用に際しては，Field Reports本体がインストール済みである必要があります。 </p><pre class="fragment">https://www.field-works.co.jp/製品情報/
-</pre><p>Field Reports本体のインストール手順につきましては， ユーザーズ・マニュアルを参照してください。</p>
-<h2><a class="anchor" id="autotoc_md3"></a>
+<p>本モジュールのご利用に際しては，Field Reports本体が導入済みである必要があります。</p>
+<p>Field Reportsのご購入もしくは試用版のダウンロードにつきましては， 下記サイトをご参照ください。</p>
+<p><a href="https://www.field-works.co.jp/">https://www.field-works.co.jp/</a>製品情報/</p>
+<h2><a class="anchor" id="autotoc_md2"></a>
 連携手段の選択</h2>
 <p>本モジュールとField Reports本体との連携方法として，以下の２種類があります。 システム構成に応じて，適切な連携方法を選択してください。</p>
 <ul>
 <li>コマンド呼び出しによる連携<ul>
-<li>本モジュールとreports本体を同一マシンに配置する必要があります。</li>
+<li>reports本体と本モジュールを同一マシンに配置する必要があります。</li>
 <li>パスが通る場所にreportsコマンドを置くか，reportsコマンドのパスをAPIに渡してください。</li>
 </ul>
 </li>
 <li>HTTP通信による連携<ul>
-<li>リモートマシンにField Reportsを配置することができます。</li>
+<li>Field Reports本体をリモートマシンに配置することができます。</li>
 <li>Field Reportsは，サーバーモードで常駐起動させてください（<code>reports server</code>）。</li>
 <li>サーバーモードで使用するポート番号（既定値：<code>50080</code>）の通信を許可してください。</li>
 </ul>
 </li>
+</ul>
+<h2><a class="anchor" id="autotoc_md3"></a>
+PHP処理系</h2>
+<ul>
+<li>PHP 7.4以上</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md4"></a>
 インストール</h1>
@@ -134,87 +129,55 @@ Composerを利用してのインストール</h2>
 <div class="fragment"><div class="line">{json:composer.json} </div>
 <div class="line">{</div>
 <div class="line">    &quot;require&quot;: {</div>
-<div class="line">        &quot;field-works/php-bridge&quot;: &quot;2.0.0&quot;</div>
+<div class="line">        &quot;field-reports/php-bridge&quot;: &quot;2.0.0&quot;</div>
 <div class="line">    },</div>
-<div class="line">    &quot;repositories&quot;: {</div>
-<div class="line">         &quot;field-works/php-bridge&quot;: {</div>
+<div class="line">    &quot;repositories&quot;: [</div>
+<div class="line">        {</div>
 <div class="line">             &quot;type&quot;: &quot;vcs&quot;,</div>
-<div class="line">             &quot;url&quot;: &quot;https://github.com/field-works/php-bridge/&quot;</div>
-<div class="line">         }</div>
-<div class="line">     }</div>
+<div class="line">             &quot;url&quot;: &quot;https://github.com/field-works/php-bridge.git&quot;</div>
+<div class="line">        }</div>
+<div class="line">    ]</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>以下のコマンドを実行してください。</p>
 <div class="fragment"><div class="line">$ composer install</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md6"></a>
-ソースからのインストール</h2>
-<p><code>field_reports</code>ディレクトリ配下のソースファイルを所定の格納場所にコピーしてご利用ください。</p>
+</div><!-- fragment --><p>※Tokenの入力が求められた場合は，個人アクセストークンを作成して入力してください。</p>
+<p><a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a></p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+ソースファイルからのインストール</h2>
+<p>ソースファイル媒体を展開して， <code>field_reports</code>ディレクトリ配下のソースファイルを所定の格納場所にコピーしてご利用ください。</p>
 <h1><a class="anchor" id="autotoc_md7"></a>
 動作確認</h1>
 <h2><a class="anchor" id="autotoc_md8"></a>
 コマンド連携時</h2>
-<p>本モジュールのソースコードを展開して，以下のコマンドを実行してください。</p>
-<div class="fragment"><div class="line">$ composer test</div>
-</div><!-- fragment --><p>reportsコマンドにパスが通っていない場合は，環境変数'REPORTS_PROXY'でコマンドのパスを指定してください （動作環境に応じて，パスは変更してください）。</p>
-<p>LinuxまたはmacOSでの実行例： </p><div class="fragment"><div class="line">$ REPORTS_PROXY=exec:/usr/local/bin/reports composer test</div>
-</div><!-- fragment --><p>Windowsでの実行例： </p><div class="fragment"><div class="line">&gt; set REPORTS_PROXY=&quot;C:\Program Files\Field Works\Field Reports 2.0\reports.exe&quot;</div>
-<div class="line">&gt; composer test</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md9"></a>
+<p><code>composer.json</code>ファイルを置いたディレクトリで，以下のコマンドを実行してください。</p>
+<div class="fragment"><div class="line">$ php -a</div>
+<div class="line">php &gt; require(&#39;vendor/autoload.php&#39;);</div>
+<div class="line">php &gt; $reports = FieldReports\Bridge::create_proxy(&quot;exec:/usr/local/bin/reports&quot;);</div>
+<div class="line">php &gt; echo $reports-&gt;version();</div>
+<div class="line">2.0.0rc3</div>
+<div class="line">php &gt; echo $reports-&gt;render(&quot;{}&quot;);</div>
+<div class="line">%PDF-1.6...</div>
+</div><!-- fragment --><ul>
+<li>動作環境に応じて，create_proxy()に与えるパスを適宜変更してください。 <br  />
+ （Windowsでは，"exec:C:/Program Files/Field Works/Field Reports x.x/bin/reports.exe"など）</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md9"></a>
 HTTP通携時</h2>
 <p>Field Reportsをサーバーモードで起動してください。</p>
-<div class="fragment"><div class="line">$ reports server -l4</div>
-</div><!-- fragment --><p>本モジュールのソースコードを展開して，以下のコマンドを実行してください （動作環境に応じて，URLは変更してください）。</p>
-<p>LinuxまたはmacOSでの実行例： </p><div class="fragment"><div class="line">$ REPORTS_PROXY=http://localhost:50080/ composer test</div>
-</div><!-- fragment --><p>Windowsでの実行例： </p><div class="fragment"><div class="line">&gt; set REPORTS_PROXY=http://localhost:50080/</div>
-<div class="line">&gt; composer test</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md10"></a>
-API概要</h1>
-<p>以下に，本モジュールで提供するAPIの概要を示します。</p>
-<h2><a class="anchor" id="autotoc_md11"></a>
-Bridgeクラス</h2>
-<p>Field Reportsと連携するためのProxyオブジェクトを生成するFactoryオブジェクトです。</p>
-<div class="fragment"><div class="line"><span class="keyword">namespace </span>FieldReports;</div>
-<div class="line"> </div>
-<div class="line"><span class="keyword">class </span>Bridge</div>
-<div class="line">{</div>
-<div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> create_proxy($uri = <span class="keyword">null</span>);</div>
-<div class="line"> </div>
-<div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> create_exec_proxy(</div>
-<div class="line">        $exe_path=<span class="stringliteral">&quot;reports&quot;</span>, $cwd=<span class="stringliteral">&quot;.&quot;</span>, $loglevel=0, $logout = STDERR);</div>
-<div class="line"> </div>
-<div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> create_http_proxy(<span class="keywordtype">string</span> $base_address = <span class="stringliteral">&quot;http://localhost:50080/&quot;</span>);</div>
-<div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
-Proxyインターフェース</h2>
-<p>Field Reportsの機能を呼び出すためのProxyインターフェースです。</p>
-<div class="fragment"><div class="line"><span class="keyword">namespace </span>FieldReports;</div>
-<div class="line"> </div>
-<div class="line"><span class="keyword">interface </span>Proxy</div>
-<div class="line">{</div>
-<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> version(): string;</div>
-<div class="line"> </div>
-<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> render(mixed $param): string;</div>
-<div class="line"> </div>
-<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> parse(<span class="keywordtype">string</span> $pdf): array;</div>
-<div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md13"></a>
-URIパラメータ</h2>
-<p><code>Bridge.create_proxy(uri)</code>メソッドに与えるURIパラメータや環境変数'REPORTS_PROXY'の書式は以下のとおりです。</p>
-<h3><a class="anchor" id="autotoc_md14"></a>
-コマンド連携時</h3>
-<p>書式： </p><pre class="fragment">exec:{exePath}?cwd={cwd}&amp;loglevel={logLevel}
-</pre><ul>
-<li>cwd, loglevelは省略可能です。</li>
-<li>loglevelが0より大きい場合，標準エラー出力にログを出力します。</li>
+<div class="fragment"><div class="line">$ reports server -l3</div>
+</div><!-- fragment --><p>次に，<code>composer.json</code>ファイルを置いたディレクトリで，以下のコマンドを実行してください。</p>
+<div class="fragment"><div class="line">$ php -a</div>
+<div class="line">php &gt; require(&#39;vendor/autoload.php&#39;);</div>
+<div class="line">php &gt; $reports = FieldReports\Bridge::create_proxy(&quot;http://localhost:50080/&quot;);</div>
+<div class="line">php &gt; echo $reports-&gt;version();</div>
+<div class="line">2.0.0rc3</div>
+<div class="line">php &gt; echo $reports-&gt;render(&quot;{}&quot;);</div>
+<div class="line">%PDF-1.6...</div>
+</div><!-- fragment --><ul>
+<li>動作環境に応じて，create_proxy()に与えるURLを適宜変更してください。 <br  />
+</li>
 </ul>
-<p>記述例： </p><pre class="fragment">exec:/usr/local/bin/reports?cwd=/tmp&amp;loglevel=3
-</pre><h3><a class="anchor" id="autotoc_md15"></a>
-HTTP通携時</h3>
-<p>書式： </p><pre class="fragment">http:{baseUri}
-</pre><p>記述例： </p><pre class="fragment">http://localhost:50080/
-</pre><h2><a class="anchor" id="autotoc_md16"></a>
-レンダリング・パラメータ</h2>
-<p><code>Proxy.render(param)</code>メソッドに与えるレンダリング・パラメータの書式については， ユーザーズ・マニュアルを参照してください。</p>
-<h1><a class="anchor" id="autotoc_md17"></a>
+<h1><a class="anchor" id="autotoc_md10"></a>
 API使用例</h1>
 <div class="fragment"><div class="line">&lt;?php</div>
 <div class="line">use <a class="code" href="classFieldReports_1_1Bridge.html">FieldReports\Bridge</a>;</div>
@@ -231,7 +194,18 @@ API使用例</h1>
 <div class="line">    ]</div>
 <div class="line">];</div>
 <div class="line">$pdf = $reports-&gt;render($param);</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md18"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md11"></a>
+ライセンス</h1>
+<p>本モジュールのソースコードは，BSDライセンスのオープンソースとします。 </p><pre class="fragment">https://github.com/field-works/php-bridge/
+</pre><p>以下のような場合，自由に改変／再配布していただいて結構です。</p>
+<ul>
+<li>独自機能の追加</li>
+<li>ビルド/実行環境等の違いにより，本モジュールが正常に機能しない。</li>
+<li>未サポートのPHPバージョンへの対応のため改造が必要。</li>
+<li>他の言語の拡張ライブラリ作成のベースとして利用したい。</li>
+</ul>
+<p>ただし，ソースを改変したモジュール自体において問題が発生し場合については， サポート対応いたしかねますのでご了承ください （Field Reports本体もしくはオリジナルの本モジュールに起因する問題であれば対応いたします）。</p>
+<h1><a class="anchor" id="autotoc_md12"></a>
 著者</h1>
 <ul>
 <li>合同会社フィールドワークス / Field Works, LLC</li>
