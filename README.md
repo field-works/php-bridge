@@ -1,5 +1,5 @@
-PHP Bridge 2.0
-============================
+PHP Bridge 2.0.0
+================
 
 Field Reports PHP Bridge（以降，本モジュールと表記します）は，
 PDF帳票ツールField ReportsをPHPから利用するためのライブラリです。
