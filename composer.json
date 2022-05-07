@@ -1,5 +1,5 @@
 {
-    "name": "field-works/field-reports",
+    "name": "field-works/php-bridge",
     "description": "Field Reports is PDF report genaration tool.",
     "type": "library",
     "license": "BSD-3-Clause",
