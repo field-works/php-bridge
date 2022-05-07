@@ -93,16 +93,16 @@ $(document).ready(function(){initNavTree('classFieldReports_1_1Bridge.html','');
 静的公開メンバ関数</h2></td></tr>
 <tr class="memitem:a3dd08616b16d1061de67f4122daf4e0a"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFieldReports_1_1Bridge.html#a3dd08616b16d1061de67f4122daf4e0a">create_proxy</a> ($uri=null)</td></tr>
 <tr class="separator:a3dd08616b16d1061de67f4122daf4e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43840d933dd121361bf9795a3aea2faa"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFieldReports_1_1Bridge.html#a43840d933dd121361bf9795a3aea2faa">create_exec_proxy</a> ( $exe_path=&quot;reports&quot;, $cwd=&quot;.&quot;, $loglevel=0, $logout=STDERR)</td></tr>
-<tr class="separator:a43840d933dd121361bf9795a3aea2faa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae139fd5a91ea11ed96607ff3e3088c01"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFieldReports_1_1Bridge.html#ae139fd5a91ea11ed96607ff3e3088c01">create_exec_proxy</a> ( $exe_path=&quot;reports&quot;, $cwd=&quot;.&quot;, $loglevel=0, $logout=null)</td></tr>
+<tr class="separator:ae139fd5a91ea11ed96607ff3e3088c01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ed1d6a4c26ac56229e5ec5ccf13576b"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFieldReports_1_1Bridge.html#a2ed1d6a4c26ac56229e5ec5ccf13576b">create_http_proxy</a> (string $base_address=&quot;http://localhost:50080/&quot;)</td></tr>
 <tr class="separator:a2ed1d6a4c26ac56229e5ec5ccf13576b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Field Reportsと連携するためのProxyオブジェクトを生成します。 </p>
 </div><h2 class="groupheader">関数詳解</h2>
-<a id="a43840d933dd121361bf9795a3aea2faa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a43840d933dd121361bf9795a3aea2faa">&#9670;&nbsp;</a></span>create_exec_proxy()</h2>
+<a id="ae139fd5a91ea11ed96607ff3e3088c01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae139fd5a91ea11ed96607ff3e3088c01">&#9670;&nbsp;</a></span>create_exec_proxy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -132,7 +132,7 @@ $(document).ready(function(){initNavTree('classFieldReports_1_1Bridge.html','');
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$logout</em> = <code>STDERR</code>&#160;</td>
+          <td class="paramname"><em>$logout</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -152,7 +152,7 @@ $(document).ready(function(){initNavTree('classFieldReports_1_1Bridge.html','');
     <tr><td class="paramtype">string</td><td class="paramname">$exe_path</td><td>Field Reportsコマンドのパス </td></tr>
     <tr><td class="paramtype">string</td><td class="paramname">$cwd</td><td>Field Reportsプロセス実行時のカレントディレクトリ </td></tr>
     <tr><td class="paramtype">int</td><td class="paramname">$loglevel</td><td>ログ出力レベル（0: ログを出力しない，1: ERRORログ，2: WARNログ，3: INFOログ，4: DEBUGログ） </td></tr>
-    <tr><td class="paramtype"></td><td class="paramname">$logout</td><td>ログ出力先Stream </td></tr>
+    <tr><td class="paramtype"></td><td class="paramname">$logout</td><td>ログ出力先Stream nullの場合，"php://stderr"にログを出力します。 </td></tr>
   </table>
   </dd>
 </dl>
@@ -232,7 +232,7 @@ $(document).ready(function(){initNavTree('classFieldReports_1_1Bridge.html','');
 <p>URI書式（コマンド連携時）: </p><pre class="fragment">exec:{exePath}?cwd={cwd}&amp;amp;loglevel={logLevel}
 </pre><ul>
 <li>cwd, loglevelは省略可能です。</li>
-<li>loglevelが0より大きい場合，STDERRにログを出力します。</li>
+<li>loglevelが0より大きい場合，"php://stderr"にログを出力します。</li>
 </ul>
 <p>URI書式（HTTP連携時）: </p><pre class="fragment">http://{hostName}:{portNumber}/
 </pre><dl class="section return"><dt>戻り値</dt><dd><a class="el" href="interfaceFieldReports_1_1Proxy.html">Proxy</a> Field Reports Proxyオブジェクト </dd></dl>
