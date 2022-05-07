@@ -29,7 +29,7 @@ class Bridge
      *      exec:{exePath}?cwd={cwd}&amp;loglevel={logLevel}
      *
      *   - cwd, loglevelは省略可能です。
-     *   - loglevelが0より大きい場合，STDERRにログを出力します。
+     *   - loglevelが0より大きい場合，"php://stderr"にログを出力します。
      * 
      *  URI書式（HTTP連携時）:
      * 
@@ -47,7 +47,7 @@ class Bridge
             $exe_path = $u["path"];
             $cwd = key_exists('cwd', $q) ? $q["cwd"] : ".";
             $loglevel = key_exists('loglevel', $q) ? (int)$q["loglevel"] : 0;
-            return Bridge::create_exec_proxy($exe_path, $cwd, $loglevel, STDERR);
+            return Bridge::create_exec_proxy($exe_path, $cwd, $loglevel, null);
         }
         return Bridge::create_http_proxy($uri);
     }
@@ -58,10 +58,11 @@ class Bridge
      * @param string $cwd Field Reportsプロセス実行時のカレントディレクトリ
      * @param int $loglevel ログ出力レベル（0: ログを出力しない，1: ERRORログ，2: WARNログ，3: INFOログ，4: DEBUGログ）
      * @param $logout ログ出力先Stream
+     *        nullの場合，"php://stderr"にログを出力します。
      * @return ExecProxy Field Reports Proxyオブジェクト
      */
     public static function create_exec_proxy(
-        $exe_path="reports", $cwd=".", $loglevel=0, $logout = STDERR)
+        $exe_path="reports", $cwd=".", $loglevel=0, $logout = null)
     {
         return new ExecProxy($exe_path, $cwd, $loglevel, $logout);
     }

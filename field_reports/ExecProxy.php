@@ -12,18 +12,25 @@ class ExecProxy implements Proxy
     private $exe_path;
     private $cwd;
     private $loglevel;
+    private $stderr;
     private $descriptor;
 
     public function __construct(string $exe_path, string $cwd, int $loglevel, $logout)
     {
+        $this->stderr = fopen('php://stderr', 'w');
         $this->exe_path = $exe_path;
         $this->cwd = $cwd;
         $this->loglevel = $loglevel;
         $this->descriptor = array(
             0 => array("pipe", "r"),
             1 => array("pipe", "w"),
-            2 => $logout
+            2 => ($logout == null) ? $this->stderr : $logout
         );
+    }
+
+    function __destruct()
+    {
+        fclose($this->stderr);
     }
 
     private function command(string ...$args)
