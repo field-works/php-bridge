@@ -12,35 +12,15 @@ PHP Bridge APIを通じて，Field Reportsの各機能を呼び出すことが�
 
 * PDFデータを解析し，フィールドや注釈の情報を取得する。
 
-## ライセンス
-
-本モジュールのソースコードは，BSDライセンスのオープンソースとします。
-
-    https://github.com/field-works/php-bridge/
-
-以下のような場合，自由に改変／再配布していただいて結構です。
-
-* 独自機能の追加
-
-* ビルド/実行環境等の違いにより，本モジュールが正常に機能しない。
-
-* 未サポートのPHPバージョンへの対応のため改造が必要。
-
-* 他の言語の拡張ライブラリ作成のベースとして利用したい。
-
-ただし，ソースを改変したモジュール自体において問題が発生し場合については，
-サポート対応いたしかねますのでご了承ください
-（Field Reports本体もしくはオリジナルの本モジュールに起因する問題であれば対応いたします）。
-
 ## 必要条件
 ### Field Reports本体
 
-本モジュールのご利用に際しては，Field Reports本体がインストール済みである必要があります。
+本モジュールのご利用に際しては，Field Reports本体が導入済みである必要があります。
 
-    https://www.field-works.co.jp/製品情報/
+Field Reportsのご購入もしくは試用版のダウンロードにつきましては，
+下記サイトをご参照ください。
 
-Field Reports本体のインストール手順につきましては，
-ユーザーズ・マニュアルを参照してください。
+https://www.field-works.co.jp/製品情報/
 
 ### 連携手段の選択
 
@@ -48,13 +28,17 @@ Field Reports本体のインストール手順につきましては，
 システム構成に応じて，適切な連携方法を選択してください。
 
 * コマンド呼び出しによる連携
-    - 本モジュールとreports本体を同一マシンに配置する必要があります。
+    - reports本体と本モジュールを同一マシンに配置する必要があります。
     - パスが通る場所にreportsコマンドを置くか，reportsコマンドのパスをAPIに渡してください。
 
 * HTTP通信による連携
-    - リモートマシンにField Reportsを配置することができます。
+    - Field Reports本体をリモートマシンに配置することができます。
     - Field Reportsは，サーバーモードで常駐起動させてください（`reports server`）。
     - サーバーモードで使用するポート番号（既定値：`50080`）の通信を許可してください。
+
+### PHP処理系
+
+* PHP 7.4以上
 
 ## インストール
 ### Composerを利用してのインストール
@@ -66,183 +50,71 @@ Composerから参照可能なモジュールが，GitHubに登録されていま
 ```json:composer.json
 {
     "require": {
-        "field-works/php-bridge": "2.0.0"
+        "field-reports/php-bridge": "2.0.0"
     },
-    "repositories": {
-         "field-works/php-bridge": {
+    "repositories": [
+        {
              "type": "vcs",
-             "url": "https://github.com/field-works/php-bridge/"
-         }
-     }
+             "url": "https://github.com/field-works/php-bridge.git"
+        }
+    ]
 }
 ```
 
 以下のコマンドを実行してください。
 
-```shell
+```
 $ composer install
 ```
 
-### ソースからのインストール
+※Tokenの入力が求められた場合は，個人アクセストークンを作成して入力してください。
 
+https://github.com/settings/tokens
+
+### ソースファイルからのインストール
+
+ソースファイル媒体を展開して，
 `field_reports`ディレクトリ配下のソースファイルを所定の格納場所にコピーしてご利用ください。
 
 ## 動作確認
 ### コマンド連携時
 
-本モジュールのソースコードを展開して，以下のコマンドを実行してください。
+`composer.json`ファイルを置いたディレクトリで，以下のコマンドを実行してください。
 
-```shell
-$ composer test
+```
+$ php -a
+php > require('vendor/autoload.php');
+php > $reports = FieldReports\Bridge::create_proxy("exec:/usr/local/bin/reports");
+php > echo $reports->version();
+2.0.0rc3
+php > echo $reports->render("{}");
+%PDF-1.6...
 ```
 
-reportsコマンドにパスが通っていない場合は，環境変数'REPORTS_PROXY'でコマンドのパスを指定してください
-（動作環境に応じて，パスは変更してください）。
-
-LinuxまたはmacOSでの実行例：
-```shell
-$ REPORTS_PROXY=exec:/usr/local/bin/reports composer test
-```
-
-Windowsでの実行例：
-```cmd
-> set REPORTS_PROXY="C:\Program Files\Field Works\Field Reports 2.0\reports.exe"
-> composer test
-```
+* 動作環境に応じて，create_proxy()に与えるパスを適宜変更してください。  
+  （Windowsでは，"exec:C:/Program Files/Field Works/Field Reports x.x/bin/reports.exe"など）
 
 ### HTTP通携時
 
 Field Reportsをサーバーモードで起動してください。
 
-```shell
-$ reports server -l4
+```
+$ reports server -l3
 ```
 
-本モジュールのソースコードを展開して，以下のコマンドを実行してください
-（動作環境に応じて，URLは変更してください）。
+次に，`composer.json`ファイルを置いたディレクトリで，以下のコマンドを実行してください。
 
-LinuxまたはmacOSでの実行例：
-```shell
-$ REPORTS_PROXY=http://localhost:50080/ composer test
+```
+$ php -a
+php > require('vendor/autoload.php');
+php > $reports = FieldReports\Bridge::create_proxy("http://localhost:50080/");
+php > echo $reports->version();
+2.0.0rc3
+php > echo $reports->render("{}");
+%PDF-1.6...
 ```
 
-Windowsでの実行例：
-```shell
-> set REPORTS_PROXY=http://localhost:50080/
-> composer test
-```
-
-## API概要
-
-以下に，本モジュールで提供するAPIの概要を示します。
-
-### Bridgeクラス
-
-Field Reportsと連携するためのProxyオブジェクトを生成するFactoryオブジェクトです。
-
-```php
-namespace FieldReports;
-
-class Bridge
-{
-    /**
-     * 引数で与えられるURIに応じたField Reports Proxyオブジェクトを返却します。
-     * 引数がnullの場合，環境変数'REPORTS_PROXY'からURIを取得します。
-     * 
-     * @param string $uri Field Reportsとの接続方法を示すURI
-     * @return Field Reports Proxyオブジェクト
-     */
-    public static function create_proxy($uri = null);
-
-    /** コマンド呼び出しによりField Reportsと連携するProxyオブジェクトを生成します。
-     * 
-     * @param string $exe_path Field Reportsコマンドのパス
-     * @param string $cwd Field Reportsプロセス実行時のカレントディレクトリ
-     * @param int $loglevel ログ出力レベル（0: ログを出力しない，1: ERRORログ，2: WARNログ，3: INFOログ，4: DEBUGログ）
-     * @param $logout ログ出力先Stream
-     * @return Field Reports Proxyオブジェクト
-     */
-    public static function create_exec_proxy(
-        $exe_path="reports", $cwd=".", $loglevel=0, $logout = STDERR);
-
-    /**
-     * HTTP通信によりField Reportsと連携するProxyオブジェクトを生成します。
-     * 
-     * @param string $base_address ベースURI
-     * @return Field Reports Proxyオブジェクト
-     */
-    public static function create_http_proxy(string $base_address = "http://localhost:50080/");
-}
-```
-
-### Proxyインターフェース
-
-Field Reportsの機能を呼び出すためのProxyインターフェースです。
-
-```php
-namespace FieldReports;
-
-interface Proxy
-{
-    /**
-     * バージョン番号を取得します。
-     * 
-     * @return バージョン番号
-     * @throws ReportsException Field Reportsで発生した例外
-     */
-    public function version(): string;
-
-    /**
-     * レンダリング・パラメータを元にレンダリングを実行します。
-     * 
-     * @param string|array $param JSON文字列または辞書形式レンダリング・パラメータ
-     * @return string PDFデータ
-     * @throws ReportsException Field Reportsで発生した例外
-     */
-    public function render(mixed $param): string;
-
-    /**
-     * PDFデータを解析し，フィールドや注釈の情報を取得します。
-     * 
-     * @param string $pdf PDFデータ
-     * @return array 解析結果
-     * @throws ReportsException Field Reportsで発生した例外
-     */
-    public function parse(string $pdf): array;
-}
-```
-
-### URIパラメータ
-
-`Bridge.create_proxy(uri)`メソッドに与えるURIパラメータや環境変数'REPORTS_PROXY'の書式は以下のとおりです。
-
-#### コマンド連携時
-
-書式：
-
-    exec:{exePath}?cwd={cwd}&loglevel={logLevel}
-
-- cwd, loglevelは省略可能です。
-- loglevelが0より大きい場合，標準エラー出力にログを出力します。
-
-記述例：
-
-    exec:/usr/local/bin/reports?cwd=/tmp&loglevel=3
-
-#### HTTP通携時
-
-書式：
-
-    http:{baseUri}
-
-記述例：
-
-    http://localhost:50080/
-
-### レンダリング・パラメータ
-
-`Proxy.render(param)`メソッドに与えるレンダリング・パラメータの書式については，
-ユーザーズ・マニュアルを参照してください。
+* 動作環境に応じて，create_proxy()に与えるURLを適宜変更してください。  
 
 ## API使用例
 
@@ -263,6 +135,26 @@ $param = [
 ];
 $pdf = $reports->render($param);
 ```
+
+## ライセンス
+
+本モジュールのソースコードは，BSDライセンスのオープンソースとします。
+
+    https://github.com/field-works/php-bridge/
+
+以下のような場合，自由に改変／再配布していただいて結構です。
+
+* 独自機能の追加
+
+* ビルド/実行環境等の違いにより，本モジュールが正常に機能しない。
+
+* 未サポートのPHPバージョンへの対応のため改造が必要。
+
+* 他の言語の拡張ライブラリ作成のベースとして利用したい。
+
+ただし，ソースを改変したモジュール自体において問題が発生し場合については，
+サポート対応いたしかねますのでご了承ください
+（Field Reports本体もしくはオリジナルの本モジュールに起因する問題であれば対応いたします）。
 
 ## 著者
 
