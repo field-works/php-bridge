@@ -41,6 +41,11 @@ https://www.field-works.co.jp/製品情報/
 * PHP 7.4以上
 
 ## インストール
+### ソースファイルからのインストール
+
+ソースファイルを展開して，
+`field_reports`ディレクトリ配下のソースファイルを所定の格納場所にコピーしてご利用ください。
+
 ### Composerを利用してのインストール
 
 Composerから参照可能なモジュールが，GitHubに登録されています。
@@ -54,8 +59,8 @@ Composerから参照可能なモジュールが，GitHubに登録されていま
     },
     "repositories": [
         {
-             "type": "vcs",
-             "url": "https://github.com/field-works/php-bridge.git"
+            "type": "vcs",
+            "url": "https://github.com/field-works/php-bridge.git"
         }
     ]
 }
@@ -71,23 +76,18 @@ $ composer install
 
 https://github.com/settings/tokens
 
-### ソースファイルからのインストール
-
-ソースファイル媒体を展開して，
-`field_reports`ディレクトリ配下のソースファイルを所定の格納場所にコピーしてご利用ください。
-
 ## 動作確認
 ### コマンド連携時
 
-`composer.json`ファイルを置いたディレクトリで，以下のコマンドを実行してください。
+以下のコマンドを実行してください。
 
 ```
 $ php -a
-php > require('vendor/autoload.php');
+php > require('{ソース格納場所}/field_reports/bridge.php');
 php > $reports = FieldReports\Bridge::create_proxy("exec:/usr/local/bin/reports");
 php > echo $reports->version();
 2.0.0rc3
-php > echo $reports->render("{}");
+php > echo $reports->render([]);
 %PDF-1.6...
 ```
 
@@ -102,15 +102,15 @@ Field Reportsをサーバーモードで起動してください。
 $ reports server -l3
 ```
 
-次に，`composer.json`ファイルを置いたディレクトリで，以下のコマンドを実行してください。
+次に，以下のコマンドを実行してください。
 
 ```
 $ php -a
-php > require('vendor/autoload.php');
+php > require('{ソース格納場所}/field_reports/bridge.php');
 php > $reports = FieldReports\Bridge::create_proxy("http://localhost:50080/");
 php > echo $reports->version();
 2.0.0rc3
-php > echo $reports->render("{}");
+php > echo $reports->render([]);
 %PDF-1.6...
 ```
 
