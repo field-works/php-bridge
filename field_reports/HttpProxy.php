@@ -32,7 +32,7 @@ class HttpProxy implements Proxy
         }
     }
 
-    public function render(mixed $param): string
+    public function render($param): string
     {
         try {
             $jparam = is_array($param) ? json_encode($param, JSON_UNESCAPED_UNICODE) : $param;

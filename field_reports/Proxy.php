@@ -24,7 +24,7 @@ interface Proxy
      * @throws ReportsException Field Reportsで発生した例外
      * @see ユーザーズ・マニュアル「第5章 レンダリングパラメータ」
      */
-    public function render(mixed $param): string;
+    public function render($param): string;
 
     /**
      * PDFデータを解析し，フィールドや注釈の情報を取得します。

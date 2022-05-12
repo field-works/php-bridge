@@ -2,10 +2,10 @@
 declare(strict_types=1);
 namespace FieldReports;
 
-require_once __DIR__ . '/proxy.php';
-require_once __DIR__ . '/exec_proxy.php';
-require_once __DIR__ . '/http_proxy.php';
-require_once __DIR__ . '/exceptions.php';
+require_once __DIR__ . '/Proxy.php';
+require_once __DIR__ . '/ExecProxy.php';
+require_once __DIR__ . '/HttpProxy.php';
+require_once __DIR__ . '/ReportsException.php';
 
 use FieldReports\HttpProxy;
 use FieldReports\ExecProxy;
