@@ -83,7 +83,7 @@ https://github.com/settings/tokens
 
 ```
 $ php -a
-php > require('{ソース格納場所}/field_reports/bridge.php');
+php > require('<ソース格納場所>/field_reports/bridge.php');
 php > $reports = FieldReports\Bridge::create_proxy("exec:/usr/local/bin/reports");
 php > echo $reports->version();
 2.0.0rc3
@@ -106,7 +106,7 @@ $ reports server -l3
 
 ```
 $ php -a
-php > require('{ソース格納場所}/field_reports/bridge.php');
+php > require('<ソース格納場所>/field_reports/bridge.php');
 php > $reports = FieldReports\Bridge::create_proxy("http://localhost:50080/");
 php > echo $reports->version();
 2.0.0rc3
