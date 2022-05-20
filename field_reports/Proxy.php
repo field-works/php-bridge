@@ -19,7 +19,7 @@ interface Proxy
     /**
      * レンダリング・パラメータを元にレンダリングを実行します。
      * 
-     * @param string|array $param JSON文字列または辞書形式レンダリング・パラメータ
+     * @param string|array $param JSON文字列または連想配列形式レンダリング・パラメータ
      * @return string PDFデータ
      * @throws ReportsException Field Reportsで発生した例外
      * @see ユーザーズ・マニュアル「第5章 レンダリングパラメータ」

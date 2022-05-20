@@ -20,14 +20,14 @@ class Bridge
      * 引数で与えられるURIに応じたField Reports Proxyオブジェクトを返却します。
      * 
      *      // コマンド連携時:
-     *      $reports = Bridge::create_proxy("exec:/usr/local/bin/reports?cwd=/usr/share&amp;logleve=3");
+     *      $reports = FieldReports\Bridge::create_proxy("exec:/usr/local/bin/reports?cwd=/usr/share&amp;logleve=3");
      *
      *      // HTTP連携時:
-     *      $reports = Bridge::create_proxy("http://localhost:50080/");
+     *      $reports = FieldReports\Bridge::create_proxy("http://localhost:50080/");
      * 
      * @param $uri Field Reportsとの接続方法を示すURI
      * <p>$uriがnullの場合，環境変数'REPORTS_PROXY'からURIを取得します。
-     * 環境変数'REPORTS_PROXY'も未設定の場合のURIは，"exec:reports"とします。</p>
+     * 環境変数'REPORTS_PROXY'も未設定の場合の既定値は"exec:reports"です。</p>
      * 
      *  URI書式（コマンド連携時）:
      * 
