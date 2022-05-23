@@ -30,8 +30,8 @@ var NAVTREE =
         [ "PHP処理系", "index.html#autotoc_md3", null ]
       ] ],
       [ "インストール", "index.html#autotoc_md4", [
-        [ "Composerを利用してのインストール", "index.html#autotoc_md5", null ],
-        [ "ソースファイルからのインストール", "index.html#autotoc_md6", null ]
+        [ "ソースファイルからのインストール", "index.html#autotoc_md5", null ],
+        [ "Composerを利用してのインストール", "index.html#autotoc_md6", null ]
       ] ],
       [ "動作確認", "index.html#autotoc_md7", [
         [ "コマンド連携時", "index.html#autotoc_md8", null ],

@@ -123,6 +123,9 @@ PHP処理系</h2>
 <h1><a class="anchor" id="autotoc_md4"></a>
 インストール</h1>
 <h2><a class="anchor" id="autotoc_md5"></a>
+ソースファイルからのインストール</h2>
+<p>ソースファイルを展開して， <code>field_reports</code>ディレクトリ配下のソースファイルを所定の格納場所にコピーしてご利用ください。</p>
+<h2><a class="anchor" id="autotoc_md6"></a>
 Composerを利用してのインストール</h2>
 <p>Composerから参照可能なモジュールが，GitHubに登録されています。</p>
 <p><code>composer.json</code>ファイルを下記のように記述してください。</p>
@@ -133,8 +136,8 @@ Composerを利用してのインストール</h2>
 <div class="line">    },</div>
 <div class="line">    &quot;repositories&quot;: [</div>
 <div class="line">        {</div>
-<div class="line">             &quot;type&quot;: &quot;vcs&quot;,</div>
-<div class="line">             &quot;url&quot;: &quot;https://github.com/field-works/php-bridge.git&quot;</div>
+<div class="line">            &quot;type&quot;: &quot;vcs&quot;,</div>
+<div class="line">            &quot;url&quot;: &quot;https://github.com/field-works/php-bridge.git&quot;</div>
 <div class="line">        }</div>
 <div class="line">    ]</div>
 <div class="line">}</div>
@@ -142,20 +145,17 @@ Composerを利用してのインストール</h2>
 <div class="fragment"><div class="line">$ composer install</div>
 </div><!-- fragment --><p>※Tokenの入力が求められた場合は，個人アクセストークンを作成して入力してください。</p>
 <p><a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a></p>
-<h2><a class="anchor" id="autotoc_md6"></a>
-ソースファイルからのインストール</h2>
-<p>ソースファイル媒体を展開して， <code>field_reports</code>ディレクトリ配下のソースファイルを所定の格納場所にコピーしてご利用ください。</p>
 <h1><a class="anchor" id="autotoc_md7"></a>
 動作確認</h1>
 <h2><a class="anchor" id="autotoc_md8"></a>
 コマンド連携時</h2>
-<p><code>composer.json</code>ファイルを置いたディレクトリで，以下のコマンドを実行してください。</p>
+<p>以下のコマンドを実行してください。</p>
 <div class="fragment"><div class="line">$ php -a</div>
-<div class="line">php &gt; require(&#39;vendor/autoload.php&#39;);</div>
+<div class="line">php &gt; require(&#39;&lt;ソース格納場所&gt;/field_reports/bridge.php&#39;);</div>
 <div class="line">php &gt; $reports = FieldReports\Bridge::create_proxy(&quot;exec:/usr/local/bin/reports&quot;);</div>
 <div class="line">php &gt; echo $reports-&gt;version();</div>
-<div class="line">2.0.0rc3</div>
-<div class="line">php &gt; echo $reports-&gt;render(&quot;{}&quot;);</div>
+<div class="line">2.0.0b3</div>
+<div class="line">php &gt; echo $reports-&gt;render([]);</div>
 <div class="line">%PDF-1.6...</div>
 </div><!-- fragment --><ul>
 <li>動作環境に応じて，create_proxy()に与えるパスを適宜変更してください。 <br  />
@@ -165,13 +165,13 @@ Composerを利用してのインストール</h2>
 HTTP通携時</h2>
 <p>Field Reportsをサーバーモードで起動してください。</p>
 <div class="fragment"><div class="line">$ reports server -l3</div>
-</div><!-- fragment --><p>次に，<code>composer.json</code>ファイルを置いたディレクトリで，以下のコマンドを実行してください。</p>
+</div><!-- fragment --><p>次に，以下のコマンドを実行してください。</p>
 <div class="fragment"><div class="line">$ php -a</div>
-<div class="line">php &gt; require(&#39;vendor/autoload.php&#39;);</div>
+<div class="line">php &gt; require(&#39;&lt;ソース格納場所&gt;/field_reports/bridge.php&#39;);</div>
 <div class="line">php &gt; $reports = FieldReports\Bridge::create_proxy(&quot;http://localhost:50080/&quot;);</div>
 <div class="line">php &gt; echo $reports-&gt;version();</div>
-<div class="line">2.0.0rc3</div>
-<div class="line">php &gt; echo $reports-&gt;render(&quot;{}&quot;);</div>
+<div class="line">2.0.0b3</div>
+<div class="line">php &gt; echo $reports-&gt;render([]);</div>
 <div class="line">%PDF-1.6...</div>
 </div><!-- fragment --><ul>
 <li>動作環境に応じて，create_proxy()に与えるURLを適宜変更してください。 <br  />
@@ -215,7 +215,7 @@ API使用例</h1>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassFieldReports_1_1Bridge_html"><div class="ttname"><a href="classFieldReports_1_1Bridge.html">FieldReports\Bridge</a></div><div class="ttdef"><b>Definition:</b> Bridge.php:12</div></div>
+<div class="ttc" id="aclassFieldReports_1_1Bridge_html"><div class="ttname"><a href="classFieldReports_1_1Bridge.html">FieldReports\Bridge</a></div><div class="ttdef"><b>Definition:</b> Bridge.php:17</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

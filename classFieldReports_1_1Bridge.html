@@ -218,17 +218,17 @@ $(document).ready(function(){initNavTree('classFieldReports_1_1Bridge.html','');
 </table>
 </div><div class="memdoc">
 <p>引数で与えられるURIに応じたField Reports Proxyオブジェクトを返却します。 </p><pre class="fragment"> // コマンド連携時:
- $reports = Bridge::create_proxy("exec:/usr/local/bin/reports?cwd=/usr/share&amp;amp;logleve=3");
+ $reports = FieldReports\Bridge::create_proxy("exec:/usr/local/bin/reports?cwd=/usr/share&amp;amp;logleve=3");
 
  // HTTP連携時:
- $reports = Bridge::create_proxy("http://localhost:50080/");
+ $reports = FieldReports\Bridge::create_proxy("http://localhost:50080/");
 </pre><dl class="params"><dt>引数</dt><dd>
   <table class="params">
     <tr><td class="paramname">$uri</td><td>Field Reportsとの接続方法を示すURI </td></tr>
   </table>
   </dd>
 </dl>
-<p>$uriがnullの場合，環境変数'REPORTS_PROXY'からURIを取得します。 環境変数'REPORTS_PROXY'も未設定の場合のURIは，"exec:reports"とします。</p>
+<p>$uriがnullの場合，環境変数'REPORTS_PROXY'からURIを取得します。 環境変数'REPORTS_PROXY'も未設定の場合の既定値は"exec:reports"です。</p>
 <p>URI書式（コマンド連携時）: </p><pre class="fragment">exec:{exePath}?cwd={cwd}&amp;amp;loglevel={logLevel}
 </pre><ul>
 <li>cwd, loglevelは省略可能です。</li>
