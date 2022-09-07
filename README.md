@@ -86,7 +86,7 @@ $ php -a
 php > require('<ソース格納場所>/field_reports/bridge.php');
 php > $reports = FieldReports\Bridge::create_proxy("exec:/usr/local/bin/reports");
 php > echo $reports->version();
-2.0.0rc7
+2.0.0rc8
 php > echo $reports->render([]);
 %PDF-1.6...
 ```
@@ -109,7 +109,7 @@ $ php -a
 php > require('<ソース格納場所>/field_reports/bridge.php');
 php > $reports = FieldReports\Bridge::create_proxy("http://localhost:50080/");
 php > echo $reports->version();
-2.0.0rc7
+2.0.0rc8
 php > echo $reports->render([]);
 %PDF-1.6...
 ```
