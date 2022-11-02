@@ -72,9 +72,14 @@ Composerから参照可能なモジュールが，GitHubに登録されていま
 $ composer install
 ```
 
-※Tokenの入力が求められた場合は，個人アクセストークンを作成して入力してください。
+※Tokenの入力が求められた場合は，GitHubで個人アクセストークンを作成し，Composerコマンドで登録してください。
 
 https://github.com/settings/tokens
+
+
+```
+$ composer config --global github-oauth.github.com <アクセストークン>
+```
 
 ## 動作確認
 ### コマンド連携時
