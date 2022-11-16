@@ -143,9 +143,10 @@ Composerを利用してのインストール</h2>
 <div class="line">}</div>
 </div><!-- fragment --><p>以下のコマンドを実行してください。</p>
 <div class="fragment"><div class="line">$ composer install</div>
-</div><!-- fragment --><p>※Tokenの入力が求められた場合は，個人アクセストークンを作成して入力してください。</p>
+</div><!-- fragment --><p>※Tokenの入力が求められた場合は，GitHubで個人アクセストークンを作成し，Composerコマンドで登録してください。</p>
 <p><a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a></p>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<div class="fragment"><div class="line">$ composer config --global github-oauth.github.com &lt;アクセストークン&gt;</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md7"></a>
 動作確認</h1>
 <h2><a class="anchor" id="autotoc_md8"></a>
 コマンド連携時</h2>
@@ -154,7 +155,7 @@ Composerを利用してのインストール</h2>
 <div class="line">php &gt; require(&#39;&lt;ソース格納場所&gt;/field_reports/bridge.php&#39;);</div>
 <div class="line">php &gt; $reports = FieldReports\Bridge::create_proxy(&quot;exec:/usr/local/bin/reports&quot;);</div>
 <div class="line">php &gt; echo $reports-&gt;version();</div>
-<div class="line">2.0.0b3</div>
+<div class="line">2.0.0</div>
 <div class="line">php &gt; echo $reports-&gt;render([]);</div>
 <div class="line">%PDF-1.6...</div>
 </div><!-- fragment --><ul>
@@ -170,7 +171,7 @@ HTTP通携時</h2>
 <div class="line">php &gt; require(&#39;&lt;ソース格納場所&gt;/field_reports/bridge.php&#39;);</div>
 <div class="line">php &gt; $reports = FieldReports\Bridge::create_proxy(&quot;http://localhost:50080/&quot;);</div>
 <div class="line">php &gt; echo $reports-&gt;version();</div>
-<div class="line">2.0.0b3</div>
+<div class="line">2.0.0</div>
 <div class="line">php &gt; echo $reports-&gt;render([]);</div>
 <div class="line">%PDF-1.6...</div>
 </div><!-- fragment --><ul>
