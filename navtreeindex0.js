@@ -1,6 +1,5 @@
 var NAVTREEINDEX0 =
 {
-".html":[1,0,0],
 "annotated.html":[1,0],
 "classFieldReports_1_1Bridge.html":[1,0,0,0],
 "classFieldReports_1_1ReportsException.html":[1,0,0,2],
